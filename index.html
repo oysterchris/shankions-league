@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shankions League — The Most Masculine Game in History</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="hud">
+            <div id="hud-left">
+                <div id="score-display">
+                    <span id="home-score" class="score home">0</span>
+                    <span class="score-separator">—</span>
+                    <span id="away-score" class="score away">0</span>
+                </div>
+                <div id="timer-display">45:00</div>
+                <div id="half-display">1ST HALF</div>
+            </div>
+            <div id="hud-right">
+                <div id="cash-display">$0</div>
+                <div id="selected-player-info"></div>
+            </div>
+        </div>
+        <div id="threat-indicator" class="hidden">⚠ THREAT NEARBY</div>
+        <div id="combat-overlay" class="hidden"></div>
+
+        <!-- Title Screen -->
+        <div id="title-screen">
+            <div class="title-content">
+                <h1>SHANKIONS<br>LEAGUE</h1>
+                <p class="tagline">THE MOST MASCULINE GAME IN HISTORY</p>
+                <div class="menu-buttons">
+                    <button id="btn-play" class="menu-btn">KICK OFF</button>
+                    <button id="btn-how" class="menu-btn secondary">HOW TO PLAY</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- How To Play -->
+        <div id="how-screen" class="hidden">
+            <div class="how-content">
+                <h2>HOW TO PLAY</h2>
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <h3>FOOTBALL</h3>
+                        <p><kbd>WASD</kbd> Move selected player</p>
+                        <p><kbd>SPACE</kbd> Pass / Shoot</p>
+                        <p><kbd>TAB</kbd> Switch selected player</p>
+                        <p><kbd>Q</kbd> Through ball</p>
+                        <p><kbd>E</kbd> Tackle</p>
+                    </div>
+                    <div class="control-group">
+                        <h3>COMBAT</h3>
+                        <p><kbd>F</kbd> Enter fight mode</p>
+                        <p><kbd>CLICK</kbd> Attack / Shoot</p>
+                        <p><kbd>ESC</kbd> Exit fight mode</p>
+                        <p><kbd>R</kbd> Reload (rifle)</p>
+                    </div>
+                    <div class="control-group">
+                        <h3>STRATEGY</h3>
+                        <p><kbd>1-5</kbd> Select player by number</p>
+                        <p>Each team has a hidden rifle carrier</p>
+                        <p>Each team has a hidden shank carrier</p>
+                        <p>All players can use fists</p>
+                    </div>
+                    <div class="control-group">
+                        <h3>OBJECTIVE</h3>
+                        <p>Score goals AND keep your team alive</p>
+                        <p>Dead players are gone for the match</p>
+                        <p>Win to earn cash for upgrades</p>
+                        <p>Protect your goalie at set pieces!</p>
+                    </div>
+                </div>
+                <button id="btn-back" class="menu-btn">BACK</button>
+            </div>
+        </div>
+
+        <!-- Halftime Screen -->
+        <div id="halftime-screen" class="hidden">
+            <div class="halftime-content">
+                <h2>HALFTIME</h2>
+                <div id="halftime-score"></div>
+                <div id="weapon-assignment">
+                    <h3>REASSIGN WEAPONS</h3>
+                    <div id="weapon-slots"></div>
+                </div>
+                <button id="btn-second-half" class="menu-btn">START 2ND HALF</button>
+            </div>
+        </div>
+
+        <!-- Match End Screen -->
+        <div id="match-end-screen" class="hidden">
+            <div class="match-end-content">
+                <h2 id="match-result"></h2>
+                <div id="match-stats"></div>
+                <div id="cash-earned"></div>
+                <div id="dead-players"></div>
+                <button id="btn-upgrades" class="menu-btn">UPGRADES</button>
+                <button id="btn-next-match" class="menu-btn secondary">NEXT MATCH</button>
+            </div>
+        </div>
+
+        <!-- Upgrade Shop -->
+        <div id="shop-screen" class="hidden">
+            <div class="shop-content">
+                <h2>ARSENAL SHOP</h2>
+                <div id="shop-cash">Cash: $0</div>
+                <div id="shop-items"></div>
+                <button id="btn-exit-shop" class="menu-btn">DONE</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ball.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/pitch.js"></script>
+    <script src="js/weapons.js"></script>
+    <script src="js/combat.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/economy.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a0a;
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* HUD */
+#hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 24px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+#hud-left, #hud-right {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#hud-right {
+    align-items: flex-end;
+}
+
+#score-display {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.score.home { color: #4fc3f7; }
+.score.away { color: #ef5350; }
+.score-separator { color: #666; margin: 0 8px; }
+
+#timer-display {
+    font-size: 18px;
+    color: #aaa;
+}
+
+#half-display {
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 2px;
+}
+
+#cash-display {
+    font-size: 20px;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+#selected-player-info {
+    font-size: 13px;
+    color: #aaa;
+}
+
+#threat-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #ff1744;
+    background: rgba(255, 23, 68, 0.15);
+    border: 2px solid #ff1744;
+    padding: 8px 24px;
+    letter-spacing: 3px;
+    animation: pulse-threat 0.5s ease-in-out infinite alternate;
+    z-index: 20;
+}
+
+@keyframes pulse-threat {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+}
+
+/* Combat Overlay */
+#combat-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+}
+
+/* Screens */
+#title-screen, #how-screen, #halftime-screen, #match-end-screen, #shop-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    background: rgba(10, 10, 10, 0.95);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Title */
+.title-content {
+    text-align: center;
+}
+
+.title-content h1 {
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: 8px;
+    color: #fff;
+    text-shadow: 0 0 40px rgba(255, 23, 68, 0.5), 0 0 80px rgba(255, 23, 68, 0.2);
+    margin-bottom: 16px;
+}
+
+.tagline {
+    font-size: 14px;
+    letter-spacing: 6px;
+    color: #ff1744;
+    margin-bottom: 48px;
+}
+
+/* Buttons */
+.menu-btn {
+    display: block;
+    margin: 12px auto;
+    padding: 14px 48px;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #fff;
+    background: #ff1744;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.menu-btn:hover {
+    background: #ff5252;
+    transform: scale(1.05);
+}
+
+.menu-btn.secondary {
+    background: transparent;
+    border: 2px solid #555;
+    color: #aaa;
+}
+
+.menu-btn.secondary:hover {
+    border-color: #ff1744;
+    color: #fff;
+}
+
+/* How To Play */
+.how-content {
+    text-align: center;
+    max-width: 800px;
+}
+
+.how-content h2 {
+    font-size: 36px;
+    letter-spacing: 4px;
+    margin-bottom: 32px;
+    color: #ff1744;
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    text-align: left;
+    margin-bottom: 32px;
+}
+
+.control-group h3 {
+    color: #4fc3f7;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.control-group p {
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 4px;
+}
+
+kbd {
+    display: inline-block;
+    background: #222;
+    border: 1px solid #444;
+    padding: 1px 6px;
+    font-size: 12px;
+    color: #fff;
+    min-width: 28px;
+    text-align: center;
+}
+
+/* Halftime */
+.halftime-content, .match-end-content, .shop-content {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.halftime-content h2, .match-end-content h2, .shop-content h2 {
+    font-size: 36px;
+    letter-spacing: 4px;
+    color: #ff1744;
+    margin-bottom: 24px;
+}
+
+#halftime-score {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+
+#weapon-assignment h3 {
+    color: #4fc3f7;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+#weapon-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.weapon-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1a1a1a;
+    padding: 10px 16px;
+    border: 1px solid #333;
+}
+
+.weapon-slot .player-name {
+    color: #4fc3f7;
+}
+
+.weapon-slot select {
+    background: #222;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 4px 8px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Match End */
+#match-result {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+#match-stats, #cash-earned, #dead-players {
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+#cash-earned {
+    color: #4caf50;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#dead-players {
+    color: #ef5350;
+}
+
+/* Shop */
+#shop-cash {
+    font-size: 24px;
+    color: #4caf50;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+
+#shop-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.shop-item {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s;
+}
+
+.shop-item:hover {
+    border-color: #ff1744;
+}
+
+.shop-item.owned {
+    border-color: #4caf50;
+    opacity: 0.6;
+    cursor: default;
+}
+
+.shop-item .item-name {
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.shop-item .item-desc {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.shop-item .item-price {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+/* Kill feed */
+#kill-feed {
+    position: absolute;
+    top: 60px;
+    right: 24px;
+    z-index: 15;
+    pointer-events: none;
+}
+
+.kill-entry {
+    font-size: 13px;
+    padding: 4px 0;
+    animation: fade-in 0.3s;
+    white-space: nowrap;
+}
+
+.kill-entry .killer { color: #ef5350; }
+.kill-entry .victim { color: #4fc3f7; }
+.kill-entry .weapon-icon { color: #888; margin: 0 6px; }
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Crosshair for combat mode */
+.crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+}
+
+.crosshair::before, .crosshair::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.crosshair::before {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.crosshair::after {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+}
